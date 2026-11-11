@@ -15,6 +15,7 @@ to **NoNoise Mic**. It has no cloud processing, telemetry, or auto-updater.
 ./build-driver.sh
 ./build-app.sh
 ``
+The app bundle is built at `build/NoNoise.app` and copied to `~/Desktop/NoNoise.app`.
 
 ## Install the virtual microphone
 ```sh
@@ -23,11 +24,9 @@ sudo ./install-driver.sh
 This restarts `coreaudiod`, so audio briefly disconnects. The installer does not run automatically.
 
 ## Launch
-```sh
-open build/NoNoise.app
-``
-Open the microphone icon in the menu bar, adjust the gate threshold, and press **Start**.
-Then select **NoNoise Mic** as the input in Zoom, Discord, Meet, OBS, or another app.
+Double-click **NoNoise.app** on your Desktop. Open the microphone icon in the menu bar,
+adjust the gate threshold, and press **Start**. Then select **NoNoise Mic** as the input in
+Zoom, Discord, Meet, OBS, or another app.
 
 ## Remove the virtual microphone
 ```sh
