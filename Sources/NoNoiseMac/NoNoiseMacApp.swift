@@ -24,7 +24,7 @@ struct NoNoiseMacApp: App {
                     Spacer()
                     Text("\(Int(audio.thresholdDB)) dB").monospacedDigit()
                 }
-                Slider(value: $audio.thresholdDB, in: -60 ... -20, step: 1)
+                Slider(value: $audio.thresholdDB, in: -60.0 ... -20.0, step: 1.0)
                 HStack {
                     Button(audio.isRunning ? "Stop" : "Start") {
                         if audio.isRunning { audio.stop() } else { audio.start() }
@@ -46,7 +46,7 @@ struct NoNoiseMacApp: App {
 @MainActor
 final class AudioPipeline: ObservableObject {
     @Published private(set) var isRunning = false
-    @Published var thresholdDB: Float = -42
+    @Published var thresholdDB: Double = -42
     @Published private(set) var status = "Install the NoNoise Mic driver to begin."
 
     private let engine = AVAudioEngine()
@@ -95,7 +95,7 @@ final class AudioPipeline: ObservableObject {
                     }
                 }
                 let rms = sqrtf(sum / Float(frames * channelCount))
-                let threshold = powf(10, self.thresholdDB / 20)
+                let threshold = powf(10, Float(self.thresholdDB) / 20)
                 let target: Float = rms >= threshold ? 1.0 : 0.015
                 for frame in 0..<frames {
                     self.gain += (target - self.gain) * (target > self.gain ? 0.0025 : 0.00035)
