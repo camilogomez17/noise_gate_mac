@@ -1,0 +1,16 @@
+name: macOS build
+on:
+  push:
+    branches: ["main", "mvp/**"]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: macos-14
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build CoreAudio virtual microphone driver
+        run: ./build-driver.sh
+      - name: Build menu-bar app
+        run: ./build-app.sh
